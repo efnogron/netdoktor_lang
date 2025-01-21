@@ -13,7 +13,9 @@ __pycache__/
 
 # Project-specific
 input/**
-.langgraph_api/
+vector_store/
+results/
+logs/
 
 # Distribution / packaging
 dist/
@@ -30,9 +32,21 @@ build/
 .DS_Store
 Thumbs.db
 
-# Logs
+# Logs and databases
 *.log
-
-# Local development
 *.db
 *.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Local development
+local_dev/
+temp/

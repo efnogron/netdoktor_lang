@@ -30,27 +30,58 @@
   - Metadata filtering options
   - Performance optimization for large documents
 
+### Phase 2: Analysis Components (Current Focus)
+
+#### 1. Query Formation Module (90% Complete)
+- ✓ Implemented markdown section parser
+- ✓ Added context-aware query formation
+- ✓ German language support
+- ✓ Added paragraph context to queries
+- ✓ Implemented logging system
+- 🔄 Still Needed:
+  - Fine-tune German prompts
+  - Add more test cases
+
+#### 2. Verification Engine (80% Complete)
+- ✓ Implemented semantic search with scoring
+- ✓ Added result synthesis
+- ✓ Added rich console output
+- 🔄 Still Needed:
+  - Improve evidence ranking
+  - Add confidence scoring
+
 ### Current Implementation Structure
 ```
 netdoktor_langgraph/
+├── input/ # Input files
+│ └── asthma/ # Disease-specific inputs
+│ ├── article/ # Articles to verify
+│ └── guideline/ # Medical guidelines
+│
+├── results/ # Verification results
+│ └── [timestamp]/ # Results per run
+│ ├── claim_.json # Individual claim results
+│ └── summary.json # Run summary
+│
 ├── src/
-│   ├── index_graph/           # Handles document indexing
-│   │   ├── configuration.py   # Index-specific settings
-│   │   ├── graph.py          # Indexing workflow
-│   │   └── state.py          # Index state management
-│   │
-│   ├── retrieval_graph/       # Handles semantic search
-│   │   ├── configuration.py   # Retrieval settings
-│   │   ├── graph.py          # Search workflow
-│   │   ├── prompts.py        # LLM prompts
-│   │   └── state.py          # Retrieval state
-│   │
-│   ├── shared/               # Shared utilities
-│   │   ├── configuration.py  # Base configurations
-│   │   ├── document_loader.py # Document processing
-│   │   └── utils.py          # General utilities
-│   │
-│   └── main.py              # Main execution script
+│ ├── query_formation/ # Query analysis
+│ │ ├── agent.py # LLM-based analysis
+│ │ ├── processor.py # Text processing
+│ │ ├── prompts.py # German prompts
+│ │ └── state.py # State management
+│ │
+│ ├── retrieval_graph/ # Semantic search
+│ │ ├── graph.py # Search workflow
+│ │ ├── prompts.py # LLM prompts
+│ │ └── state.py # Search state
+│ │
+│ ├── shared/ # Shared utilities
+│   ├── document_loader.py
+│   ├── output_formatter.py
+│   └── utils.py
+│ 
+│
+└── vector_store/ # Chroma DB storage
 ```
 
 
