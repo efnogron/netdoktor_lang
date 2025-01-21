@@ -1,24 +1,24 @@
 from dataclasses import dataclass, field
 from typing import Annotated
 from shared.configuration import BaseConfiguration
+from pathlib import Path
 
 @dataclass
-class RetrievalConfiguration(BaseConfiguration):
-    """Configuration for the retrieval process."""
+class RetrievalConfiguration:
+    """Configuration for retrieval workflow."""
+    
+    # Model settings
+    embedding_model: str = "text-embedding-3-small"
+    llm_model: str = "gpt-4o-mini"
+    
+    # Vector store settings
+    collection_name: str = "guidelines"  # Updated to match index configuration
+    vector_store_dir: Path = Path("vector_store")
     
     # Search settings
-    top_k: int = field(
-        default=5,
-        metadata={"description": "Number of top results to return"}
-    )
+    top_k: int = 5
     
     similarity_threshold: float = field(
         default=0.7,
         metadata={"description": "Minimum similarity score for results"}
     )
-    
-    # LLM settings
-    llm_model: Annotated[str, {"kind": "llm"}] = field(
-        default="gpt-4o-mini",
-        metadata={"description": "LLM model for query processing"}
-    ) 

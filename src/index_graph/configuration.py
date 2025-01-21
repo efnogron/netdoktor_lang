@@ -4,18 +4,18 @@ from shared.configuration import BaseConfiguration
 
 @dataclass
 class IndexConfiguration(BaseConfiguration):
-    """Configuration for the indexing process."""
+    """Configuration for document indexing."""
+    
+    # Document processing settings
+    chunk_size: int = 1000
+    chunk_overlap: int = 100
+    
+    # Model settings
+    embedding_model: str = "text-embedding-3-small"
     
     # Vector store settings
-    collection_name: str = field(
-        default="guidelines",
-        metadata={"description": "Name of the vector store collection"}
-    )
-    
-    persist_directory: Path = field(
-        default=Path("vector_store"),
-        metadata={"description": "Directory to persist the vector store"}
-    )
+    collection_name: str = "guidelines"  # Use same name
+    persist_directory: Path = Path("vector_store")
     
     # Processing settings
     recursive_dir_search: bool = field(

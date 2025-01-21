@@ -1,0 +1,63 @@
+{
+  "original_sentence": "- Diagnostik: Der Arzt stellt die Diagnose unter anderem durch eine körperliche Untersuchung und einen Lungenfunktionstest.",
+  "context_paragraph": "- Behandlung: Kontakt zu allergieauslösenden Stoffen vermeiden; mit Medikamenten (z.B. Asthmaspray, Allergie-Immuntherapie) gut behandelbar. - Prognose: Aktuell kann allergisches Asthma nicht geheilt werden, Betroffene können den Krankheitsverlauf jedoch selbst positiv beeinflussen. - Symptome: Typische Beschwerden sind Husten, Kurzatmigkeit und plötzliche Atemnot. - Ursachen: Wird besonders häufig durch Blütenpollen, Hausstaubmilbenkot, Allergene aus dem Fell von Haustieren oder Schimmelpilzsporen ausgelöst. - Risikofaktoren: Bestimmte Faktoren (z.B. Gene, Passivrauch, übertriebene Hygiene) begünstigen die Entstehung der Krankheit. - Häufigkeit: Allergisches Asthma tritt innerhalb der Familie in der Regel häufiger auf. 25 bis 40 Prozent aller Patienten mit unbehandelter Pollenallergie entwickeln allergisches Asthma. - Diagnostik: Der Arzt stellt die Diagnose unter anderem durch eine körperliche Untersuchung und einen Lungenfunktionstest.",
+  "verification_query": "verify: Der Arzt stellt die Diagnose von allergischem Asthma unter anderem durch eine körperliche Untersuchung und einen Lungenfunktionstest.",
+  "retrieved_chunks": [
+    {
+      "content": "34 \n \n \n \nDie körperliche Untersuchung (siehe Abschnitt 2.2) zielt auf den Nachweis von Zeichen einer bronchialen \nObstruktion, die im beschwerdefreien Intervall auch fehlen können, ab. Dies sind z.  B. ein verlängertes \nExspirium, trockene Nebengeräusche (Giemen, Pfeifen, Brummen) bei der Auskultation (eventuell durch \nforcierte Exspiration zu provozieren). Insbesondere bei Kindern mit schwerer Atemnot können thorakale \nEinziehungen (jugulär, intercostal, epigastrisch) beobachtet werden. Bei schwerer Obstruktion ist \nmanchmal ein nur sehr leises Atemgeräusch zu hören (cave: „stille Obstruktion“). Auch dokumentierte \nklinische Befunde aus der Vorgeschichte und das Ansprechen auf stattgehabte oder laufende Therapien \n(z. B. Ansprechen auf ICS -Therapie) finden Eingang in die Bewertung. Im Rahmen der vollständigen \nkörperlichen Untersuchung ist auf kutane oder nasale Zeichen der Atopie zu achten. Bei \nDiagnosestellung und im Verlauf sind die altersentsprechende Größen- und Gew ichtsentwicklung \ninklusive Perzentileneintrag zu dokumentieren. \nDie fachärztliche lungenfunktionelle Diagnostik eines Asthma soll, sobald vom Patienten durchführbar, \nmittels Spirometrie bzw. Bodyplethysmographie erfolgen (siehe Abschnitt 2.3.1). Soweit verfügbar, sind \ndie aktuellen altersentsprechenden Normwerte und die Beurteilung mittels z-Scores einzusetzen. Zur \nGesamtbeurteilung gehört auch die visuelle Beurteilung der Fluß-Volumen-Kurve. Ein Reversibilitätstest \nmit SABA ist bei nachgewiesener Atemwegsobstruktion sowie bei formal normwertiger Lungenfunktion \nund klaren anamnestischen Hinweisen erforderlich. Bei normaler Lungenfunktion und unauffälliger \nBronchodilatation, aber typischer Anamnese, soll der Nachweis einer unspezifischen BHR erfolgen. \nVon klarem diagnostischem Zusatznutzen im Kindes- und Jugendalter ist die wiederholte Messung des \nFeNO (siehe Abschnitt 2.4.3). Das Vorliegen von mehrfachen hohen FeNO -Werten macht Asthma und \ndas Ansprechen auf ICS wahrscheinlich. Ein niedriger FeNO -Wert schließt Asthma nicht aus. In der \nBeurteilung des FeNO-Messwertes sind exogene Störgrößen wie aktives Rauchen, Infekte oder starke \nkörperliche Belastung zu berücksichtigen. Bei jedem Patienten mit V.a. Asthma soll eine gezielte \nallergologische Anamnese erfolgen und sich eine Stufendiagnostik (Pricktest, spez ifische IgE-\nKasten 2: Diagnostikbausteine bei V.a. Asthma im Kindes - und Jugendalter (in der Regel sichern",
+      "metadata": {
+        "page": 33,
+        "page_label": "34",
+        "source": "/Users/lukasvonkunhardt/Documents/A_PROJECTS/VS_Code_Projects/netdoktor_langgraph/input/asthma/guideline/guideline.pdf",
+        "score": 0.5735865831375122
+      },
+      "score": 0.5735865831375122
+    },
+    {
+      "content": "allergologische Anamnese erfolgen und sich eine Stufendiagnostik (Pricktest, spez ifische IgE-\nKasten 2: Diagnostikbausteine bei V.a. Asthma im Kindes - und Jugendalter (in der Regel sichern \nweder einzelne noch einmalige Befunde die Diagnose). \nKrankengeschichte unter Berücksichtigung von Symptomen, auslösenden Faktoren, \nKomorbiditäten, Umwelteinflüssen und Familienanamnese \nKlinische Untersuchung \nNachweis einer variablen, (partiell) reversiblen Atemwegsobstruktion mittels Spirometrie bzw. \nBodyplethysmographie oder Impulsoszillometrie \nNachweis einer bronchialen Hyperreagibilität \nNachweis eines erhöhten bronchialen Entzündungsniveaus mittels FeNO-Messung \nAllergologische Stufendiagnostik insbesondere bei positiver Anamnese \nErgänzende Differentialdiagnostik bei schwerem bzw. schwierigem Asthma",
+      "metadata": {
+        "page": 33,
+        "page_label": "34",
+        "source": "/Users/lukasvonkunhardt/Documents/A_PROJECTS/VS_Code_Projects/netdoktor_langgraph/input/asthma/guideline/guideline.pdf",
+        "score": 0.5764909982681274
+      },
+      "score": 0.5764909982681274
+    },
+    {
+      "content": "Asthma [52] zu berücksichtigen. \nAnamnestische Angaben, die eher gegen das Vorliegen eines Asthma sprechen \n− chronischer Husten und Auswurf ohne weitere respiratorische Symptome \n− nur inspiratorisch empfundene Luftnot. \n2.2 Klinische Untersuchungsbefunde \nDer körperliche Untersuchungsbefund unterscheidet sich entsprechend der aktuellen Asthma-\nBeschwerden und des Schweregrades der Erkrankung. So kann der Untersuchungsbefund regelrecht \nsein, da der Patient tagsüber untersucht wird, aber seine Beschwerden nachts oder in den frühen",
+      "metadata": {
+        "page": 20,
+        "page_label": "21",
+        "source": "/Users/lukasvonkunhardt/Documents/A_PROJECTS/VS_Code_Projects/netdoktor_langgraph/input/asthma/guideline/guideline.pdf",
+        "score": 0.6482848525047302
+      },
+      "score": 0.6482848525047302
+    },
+    {
+      "content": "20 \n \nE6  Der Nachweis einer bronchialen Hyperreagibilität ohne charakteristische Symptome soll nicht als \nhinreichend für die Diagnose Asthma gelten, da auch Gesunde bronchial hyperreagibel sein \nkönnen. \nE7  Bei Patienten mit intermittierenden charakteristischen Symptomen ohne aktuelle Bronchial -\nobstruktion, mit negativen Provokationstesten und niedrigen Typ- 2-Markern und ohne Nachweis \nder Variabilität der eine Bronchialobstruktion anzeigenden Parameter sollte die Diagnose Asthma \nals unwahrscheinlich, bei uncharakteristischen Symptomen als ausgeschlossen gelten. \nE8  Im Rahmen der Diagnostik bei Verdacht auf Asthma sollen ein Allergietest (Hauttest und/oder \nBestimmung von spezifischem IgE im Serum) durchgeführt und sollte die Zahl der eosinophilen \nGranulozyten im Blut bestimmt werden. Ergänzend kann bei höheren Schweregraden die \nBestimmung von Gesamt-IgE im Serum zur Therapie- Planung erforderlich sein. Die zusätzliche \nBestimmung des exhalierten NO (FeNO) kann sowohl zur Diagnosesicherung als auch zur \nTherapie-Planung von Asthma durchgeführt werden. \nS1  Das Vorliegen einer (allergischen) Rhinitis oder einer anderen allergischen Komorbidität oder einer \nchronischen Rhinosinusitis erhöht die Wahrscheinlichkeit der Diagnose Asthma. \nDie Diagnose des Asthma beruht auf 2 Säulen: \n− Sorgfältige Erfassung typischer anamnestischer Angaben, Komorbiditäten, Symptome, körperlicher \nUntersuchungsbefunde und Biomarker \nund \n− Nachweis einer variablen und/oder reversiblen Atemwegsobstruktion (Variabilität und Reversibilität) \noder einer Überempfindlichkeit der Atemwege (bronchiale Hyperreagibilität) und/oder eines \nAnsprechens der Beschwerden auf eine Asthma-typische Therapie \n2.1 Anamnese \n2.1.1 Kinder und Jugendliche \nKlassischerweise liegen bei Kindern und Jugendlichen mit Asthma anamnestisch wiederholte Episoden \nvon erschwerter Atmung und Atemnot vor, oft begleitet von trockenem Husten, geräuschvoller (Giemen) \nund verlängerter Ausatmung, vor allem bei körperlicher Bel astung und im Rahmen von viralen \nAtemwegsinfekten. In der initialen, ausführlichen Erhebung der Krankengeschichte soll nach familiärer \nAsthma- und Atopiebelastung, postpartalen Atembeschwerden, atopischen Erkrankungen in der \nEigenanamnese (atopische Dermat itis, allergische Rhinokonjunktivitis, Nahrungsmittelallergien), \nPassivrauchbelastung und Allergenexposition (z.  B. Haustiere und Schimmelbefall) gefahndet werden  \n[93]. Zur Unterstützung können strukturierte Fragebögen, die diese Punkte umfassen, herangezogen",
+      "metadata": {
+        "page": 19,
+        "page_label": "20",
+        "source": "/Users/lukasvonkunhardt/Documents/A_PROJECTS/VS_Code_Projects/netdoktor_langgraph/input/asthma/guideline/guideline.pdf",
+        "score": 0.6680588126182556
+      },
+      "score": 0.6680588126182556
+    },
+    {
+      "content": "22 \n \nMorgenstunden vorhanden sind. Der Nachweis exspiratorischer Nebengeräusche ist bei forcierter \nExspiration häufiger als bei Ruheatmung. Bei schwergradigem Asthma sind die pathologischen \nNebengeräusche häufiger. Der Klopfschall ist meist hypersonor aufgrund der Lungenüberblähung. Im \nakuten Asthma- Anfall können die Atemgeräusche kaum noch hörbar sein, da keine ausreichende \nStrömung in den Atemwegen aufgebracht werden kann („silent chest“). Prinzipiell können Atemnot, \nHusten und ein pathologischer Auskultations befund auch durch andere pulmonale (Atemwegsinfekte, \nCOPD, Bronchiektasen) und kardiovaskuläre Erkrankungen (Herzinsuffizienz) bedingt sein. \nBei Kindern ist insbesondere auf folgende Symptome zu achten: Atopiezeichen, Zunahme des sagittalen \nThoraxdurchmessers bei Überblähung, thorakale Einziehungen (jugulär, intercostal, epigastrisch) bei \nakuter Atemnot. \n2.3 Apparative Diagnostik \nFür die Diagnose des Asthma ist die Messung der Lungenfunktion erforderlich [14]. Sie dient sowohl dem \nNachweis eines regelrechten Befundes als auch der Objektivierung einer Atemwegsobstruktion und ihrer \nReversibilität und Variabilität. Eine normale Lungenfunktion schließt ein Asthma nicht aus. Der Nachweis \ndes variablen Charakters der Atemwegsobstruktion erfordert serielle Lungenfunktionsmessungen oder \nden häuslichen Einsatz eines Peak-Flow-Meters. \n2.3.1 Lungenfunktionsprüfung \nZur Durchführung und Qualitätskontrolle der Spirometrie und Bodyplethysmographie darf auf die \ngeltenden Leitlinien und Empfehlungen [81, 98, 99] verwiesen werden. Die wichtigsten spirometrischen \nMesswerte sind die forcierte Vitalkapazität (FVC), die Einsekundenkapazität (FEV 1) und das Verhältnis \nFEV1/FVC (Tiffeneau -Index). Die Messgrößen des Flussvolumendiagramms gehen nicht in die \nBeurteilung der spirometrischen Messung ein. Die qualitative Bewertung des Flussvolumendiagramms \nist jedoch hilfreich für die Qualitätskontrolle der Durchführung der Messun g. Die \nGanzkörperplethysmografie erlaubt die Bestimmung des spezifischen Atemwegswiderstandes und des \nintrathorakalen Gasvolumens und eignet sich zur Objektivierung der Lungenüberblähung. Überdies ist \ndie qualitative Beurteilung der inspiratorischen und ex spiratorischen Atemwegswiderstände möglich. \nDieses Vorgehen ist besonders zur funktionellen Differenzialdiagnose zwischen Asthma und COPD \nhilfreich. Das diagnostische Einbeziehen der Bodyplethysmografie zusätzlich zur Spirometrie ermöglicht",
+      "metadata": {
+        "page": 21,
+        "page_label": "22",
+        "source": "/Users/lukasvonkunhardt/Documents/A_PROJECTS/VS_Code_Projects/netdoktor_langgraph/input/asthma/guideline/guideline.pdf",
+        "score": 0.6721583008766174
+      },
+      "score": 0.6721583008766174
+    }
+  ],
+  "verification_result": {
+    "status": "SUCCESS",
+    "messages": [
+      "True\n\nThe statement \"Der Arzt stellt die Diagnose von allergischem Asthma unter anderem durch eine körperliche Untersuchung und einen Lungenfunktionstest\" is correct. The guidelines emphasize that the diagnosis of asthma includes a thorough clinical examination aimed at identifying signs of bronchial obstruction, which may be present or absent during symptom-free periods. Additionally, lung function tests, specifically spirometry and possibly body plethysmography, are required to confirm variable and/or reversible airway obstruction, an essential criterion for diagnosing asthma."
+    ]
+  }
+}

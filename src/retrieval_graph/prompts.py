@@ -1,22 +1,17 @@
-"""Prompts used in the retrieval process."""
+VERIFICATION_QUERY_TEMPLATE = """In diesem Absatz:
+"{context_paragraph}"
 
-QUERY_ANALYSIS_PROMPT = """Analyze the following query and identify the key medical concepts:
-Query: {query}
+müssen wir folgende Aussage überprüfen:
+"{sentence}"
 
-Focus on identifying:
-1. Medical conditions
-2. Medications
-3. Treatment contexts (e.g., pregnancy, pediatric)
-4. Specific guidelines being referenced
+Bitte formuliere eine präzise Verifizierungsanfrage, die wir gegen die medizinischen Leitlinien prüfen können.
 
-Provide a concise analysis that will help in retrieving relevant medical guideline sections."""
+Die Anfrage sollte mit "verify:" beginnen und in einem neutralen, sachlichen Ton formuliert sein."""
 
-RESULT_SYNTHESIS_PROMPT = """Based on the retrieved guideline sections, provide a comprehensive answer:
+RESULT_SYNTHESIS_PROMPT = """Basierend auf den medizinischen Leitlinien, überprüfe bitte folgende Aussage:
 
-Query: {query}
+Kontext: {context}
+Zu überprüfende Aussage: {query}
 
-Retrieved Sections:
-{context}
-
-Your task is to verify the statement in the query. Output a boolean value (True or False) and a short explanation. Provide a corrected statement if the statement is not correct.
-""" 
+Antworte mit "True", "False" oder "Unclear" und erkläre dann deine Bewertung basierend auf den verfügbaren Leitlinien.
+Beziehe dich dabei explizit auf die relevanten Stellen in den Leitlinien."""

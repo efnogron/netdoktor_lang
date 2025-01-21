@@ -5,7 +5,7 @@ from langchain_chroma import Chroma
 
 from retrieval_graph.state import RetrievalState
 from retrieval_graph.configuration import RetrievalConfiguration
-from retrieval_graph.prompts import QUERY_ANALYSIS_PROMPT, RESULT_SYNTHESIS_PROMPT
+from retrieval_graph.prompts import RESULT_SYNTHESIS_PROMPT
 from shared.utils import setup_embeddings
 
 def create_retrieval_graph(config: RetrievalConfiguration) -> StateGraph:
@@ -14,22 +14,52 @@ def create_retrieval_graph(config: RetrievalConfiguration) -> StateGraph:
     # Initialize components
     embeddings = setup_embeddings(config.embedding_model)
     vectorstore = Chroma(
-        collection_name="guidelines",
-        embedding_function=embeddings
+        collection_name=config.collection_name,
+        embedding_function=embeddings,
+        persist_directory=str(config.vector_store_dir)
     )
+    
+    print(f"\nInitialized vector store from {config.vector_store_dir}")
+    print(f"Collection name: {config.collection_name}")
+    print(f"Collection size: {vectorstore._collection.count()}")
+    
     llm = ChatOpenAI(model=config.llm_model)
     
     # Define graph nodes
     def search_node(state: RetrievalState) -> Dict[str, Any]:
         """Perform semantic search."""
-        results = vectorstore.similarity_search(
-            state.query,
-            k=config.top_k,
-        )
-        return {"results": results}
+        print(f"\nExecuting search for query: {state.query}")
+        
+        try:
+            results = vectorstore.similarity_search_with_score(
+                state.query,
+                k=config.top_k,
+            )
+            
+            # Unpack results and scores
+            docs = []
+            print(f"Found {len(results)} results:")
+            for doc, score in results:
+                print(f"- Score {score:.3f}: {doc.page_content[:100]}...")
+                doc.metadata["score"] = score
+                docs.append(doc)
+                
+            if not docs:
+                print("WARNING: No documents found in search!")
+                
+            return {"results": docs}
+            
+        except Exception as e:
+            print(f"Search error: {str(e)}")
+            return {"results": []}
     
     def synthesize_node(state: RetrievalState) -> Dict[str, Any]:
         """Synthesize results into a coherent response."""
+        if not state.results:
+            print("Keine relevanten Leitlinien gefunden")
+            return {"messages": ["Keine relevanten Leitlinien gefunden."]}
+            
+        print(f"Analysiere {len(state.results)} Ergebnisse")
         context = "\n\n".join(doc.page_content for doc in state.results)
         response = llm.invoke(
             RESULT_SYNTHESIS_PROMPT.format(
