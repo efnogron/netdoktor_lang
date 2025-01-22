@@ -43,7 +43,7 @@ class VerificationOutputFormatter:
         self.console.print(query, soft_wrap=True, crop=False)
         
         # Evidence Table
-        if claim_data["retrieved_chunks"]:
+        if claim_data.get("retrieved_chunks"):
             table = Table(
                 title="Retrieved Evidence",
                 box=ROUNDED,
@@ -52,7 +52,7 @@ class VerificationOutputFormatter:
                 show_lines=True
             )
             table.add_column("Score", style="cyan", justify="right", width=8)
-            table.add_column("Content", style="green")  # Remove fixed width to allow wrapping
+            table.add_column("Content", style="green")
             table.add_column("Source", style="dim", width=30)
             
             for chunk in claim_data["retrieved_chunks"]:
@@ -68,13 +68,29 @@ class VerificationOutputFormatter:
         # Verification Result
         if "verification_result" in claim_data:
             result = claim_data["verification_result"]
+            # Handle both message list and direct content
+            messages = result.get("messages", [])
+            if isinstance(messages, list):
+                message_text = "\n".join(messages)
+            else:
+                message_text = str(messages)
+            
             result_panel = Panel(
-                Text("\n".join(result["messages"]), style="bold white"),
-                title=f"Verification Result ({result['status']})",
+                Text(message_text or "No verification message available", style="bold white"),
+                title=f"Verification Result ({result.get('status', 'NO_RESULT')})",
                 box=ROUNDED,
-                border_style="green" if result["status"] == "SUCCESS" else "red"
+                border_style="green" if result.get("status") == "SUCCESS" else "red"
             )
             self.console.print(result_panel, soft_wrap=True, crop=False)
+        else:
+            # Display a message when no verification result is available
+            no_result_panel = Panel(
+                Text("No verification result available", style="bold red"),
+                title="Verification Result (NO_RESULT)",
+                box=ROUNDED,
+                border_style="red"
+            )
+            self.console.print(no_result_panel, soft_wrap=True, crop=False)
         
         # Separator
         self.console.print("\n" + "="*80 + "\n", soft_wrap=True, crop=False)

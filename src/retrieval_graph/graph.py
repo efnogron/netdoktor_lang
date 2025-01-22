@@ -2,10 +2,11 @@ from typing import Dict, Any
 from langgraph.graph import StateGraph, START, END
 from langchain_openai import ChatOpenAI
 from langchain_chroma import Chroma
+import json
 
 from retrieval_graph.state import RetrievalState
 from retrieval_graph.configuration import RetrievalConfiguration
-from retrieval_graph.prompts import RESULT_SYNTHESIS_PROMPT
+from retrieval_graph.prompts import RESULT_SYNTHESIS_PROMPT, RESULT_SYNTHESIS_PROMPT_CONFIG
 from shared.utils import setup_embeddings
 
 def create_retrieval_graph(config: RetrievalConfiguration) -> StateGraph:
@@ -23,7 +24,9 @@ def create_retrieval_graph(config: RetrievalConfiguration) -> StateGraph:
     print(f"Collection name: {config.collection_name}")
     print(f"Collection size: {vectorstore._collection.count()}")
     
-    llm = ChatOpenAI(model=config.llm_model)
+    llm = ChatOpenAI(model=config.llm_model).bind(
+        tools=RESULT_SYNTHESIS_PROMPT_CONFIG
+    )
     
     # Define graph nodes
     def search_node(state: RetrievalState) -> Dict[str, Any]:
@@ -57,17 +60,37 @@ def create_retrieval_graph(config: RetrievalConfiguration) -> StateGraph:
         """Synthesize results into a coherent response."""
         if not state.results:
             print("Keine relevanten Leitlinien gefunden")
-            return {"messages": ["Keine relevanten Leitlinien gefunden."]}
+            return {
+                "verification_result": {
+                    "status": "UNCLEAR",
+                    "messages": ["Keine relevanten Leitlinien gefunden."]
+                }
+            }
             
         print(f"Analysiere {len(state.results)} Ergebnisse")
         context = "\n\n".join(doc.page_content for doc in state.results)
+        
+        # Use the verification_reasoning in the prompt
         response = llm.invoke(
             RESULT_SYNTHESIS_PROMPT.format(
                 query=state.query,
-                context=context
+                context=context,
+                verification_reasoning=state.verification_reasoning
             )
         )
-        return {"messages": [response]}
+
+        # Extract the JSON from the function call
+        if response.additional_kwargs.get('tool_calls'):
+            tool_call = response.additional_kwargs['tool_calls'][0]
+            result = json.loads(tool_call['function']['arguments'])
+            return {"verification_result": result}
+        
+        return {
+            "verification_result": {
+                "status": "ERROR",
+                "messages": ["Fehler bei der Verarbeitung der Antwort."]
+            }
+        }
     
     # Create and compile graph
     workflow = StateGraph(RetrievalState)

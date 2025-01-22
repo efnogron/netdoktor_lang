@@ -79,7 +79,10 @@ def process_and_verify_claims(input_file: Path, max_sentences: int = None) -> No
         print(f"\nVerifying claim {idx}/{len(claims)}: {claim['query']}")
         
         # Get relevant guidelines through RAG
-        retrieval_result = search_guidelines(claim['query'])
+        retrieval_result = search_guidelines(
+            query=claim['query'],
+            verification_reasoning=claim['reasoning']
+        )
         
         result = {
             "original_sentence": claim['sentence'],
@@ -111,13 +114,17 @@ def process_and_verify_claims(input_file: Path, max_sentences: int = None) -> No
     # Format and display results
     format_verification_results(results_dir)
 
-def search_guidelines(query: str) -> Dict[str, Any]:
+def search_guidelines(query: str, verification_reasoning: str) -> Dict[str, Any]:
     """Search medical guidelines for verification."""
     try:
         print(f"\nSearching guidelines for: {query}")
+        print(f"Verification reasoning: {verification_reasoning}")
         
-        # Initialize state with the query
-        state = RetrievalState(query=query)
+        # Initialize state with the query and reasoning
+        state = RetrievalState(
+            query=query,
+            verification_reasoning=verification_reasoning
+        )
         
         # Execute the pre-compiled graph
         result = retrieval_graph.invoke(state)

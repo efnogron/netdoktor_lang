@@ -32,10 +32,31 @@ Absatz: {paragraph}
 
 Zu analysierender Satz: {sentence}
 
-Ausgabe im JSON-Format:
-
-    "needs_verification": true/false,
-    "query": "verify: [originaler deutscher Satz oder minimal umformulierter deutscher Satz]" oder null,
-    "reasoning": "Begründung auf Deutsch"
 """)
 ]) 
+
+QUERY_FORMATION_PROMPT_CONFIG = [{
+                "type": "function",
+                "function": {
+                    "name": "format_analysis",
+                    "description": "Format the analysis result as a JSON object",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "needs_verification": {
+                                "type": "boolean",
+                                "description": "Whether the sentence needs verification"
+                            },
+                            "query": {
+                                "type": "string",
+                                "description": "The verification query, starting with 'verify: ' or null if no verification needed"
+                            },
+                            "reasoning": {
+                                "type": "string",
+                                "description": "Explanation of what needs to be verified."
+                            }
+                        },
+                        "required": ["needs_verification", "reasoning"]
+                    }
+                }
+            }]

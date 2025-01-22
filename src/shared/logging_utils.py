@@ -23,7 +23,7 @@ class QueryFormationLogger:
         
         # Create single log file handler
         self.log_file = self.log_dir / f"query_formation_{timestamp}.log"
-        file_handler = logging.FileHandler(self.log_file)
+        file_handler = logging.FileHandler(self.log_file, encoding='utf-8')
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         file_handler.setFormatter(formatter)
         
@@ -44,15 +44,23 @@ class QueryFormationLogger:
     ) -> None:
         """Log a single sentence analysis with its context."""
         
-        # Log detailed information
-        self.logger.info(
+        # Create a nicely formatted log message
+        log_message = (
             f"\nSentence Analysis:"
-            f"\n-------------------"
+            f"\n==================="
             f"\nSentence: {sentence}"
-            f"\nContext: {json.dumps(context, indent=2)}"
-            f"\nResult: {json.dumps(analysis_result, indent=2)}"
-            f"\n"
+            f"\nContext:"
+            f"\n  Heading: {context.get('heading', '')}"
+            f"\n  Subheading: {context.get('subheading', '')}"
+            f"\n  Paragraph: {context.get('paragraph', '')}"
+            f"\nAnalysis Result:"
+            f"\n  Needs Verification: {analysis_result.get('needs_verification', False)}"
+            f"\n  Query: {analysis_result.get('query', 'None')}"
+            f"\n  Reasoning: {analysis_result.get('reasoning', 'None')}"
+            f"\n-------------------\n"
         )
+        
+        self.logger.info(log_message)
         
         # Store structured result
         self.results.append({

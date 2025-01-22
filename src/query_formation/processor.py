@@ -97,6 +97,8 @@ class QueryFormationProcessor:
                 continue
                 
             result = self.agent.analyze_sentence(sentence, context)
+            
+            # Log the analysis using the logger
             self.logger.log_analysis(sentence, vars(context), result)
             
             if result["needs_verification"]:

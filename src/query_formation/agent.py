@@ -3,12 +3,11 @@ import logging
 from typing import Dict, Any
 from pathlib import Path
 from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
 from datetime import datetime
 
 from .configuration import QueryFormationConfig
-from .state import QueryFormationState, QueryContext
-from .prompts import QUERY_FORMATION_PROMPT
+from .state import QueryContext
+from .prompts import QUERY_FORMATION_PROMPT, QUERY_FORMATION_PROMPT_CONFIG
 
 class QueryFormationAgent:
     """Agent for analyzing and forming verification queries from medical text."""
@@ -22,31 +21,7 @@ class QueryFormationAgent:
         
         # Bind the JSON formatting tool to the model
         self.llm = base_model.bind(
-            tools=[{
-                "type": "function",
-                "function": {
-                    "name": "format_analysis",
-                    "description": "Format the analysis result as a JSON object",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "needs_verification": {
-                                "type": "boolean",
-                                "description": "Whether the sentence needs verification"
-                            },
-                            "query": {
-                                "type": "string",
-                                "description": "The verification query, starting with 'verify: ' or null if no verification needed"
-                            },
-                            "reasoning": {
-                                "type": "string",
-                                "description": "Explanation for the decision in German"
-                            }
-                        },
-                        "required": ["needs_verification", "reasoning"]
-                    }
-                }
-            }]
+            tools=QUERY_FORMATION_PROMPT_CONFIG
         )
         
         # Setup logging
@@ -86,24 +61,10 @@ class QueryFormationAgent:
             messages = self.prompt.format_messages(**prompt_vars)
             response = self.llm.invoke(messages)
             
-            # Access tool_calls from additional_kwargs
             if response.additional_kwargs.get('tool_calls'):
                 tool_call = response.additional_kwargs['tool_calls'][0]
-                # Get the arguments from the function call
-                result = json.loads(tool_call['function']['arguments'])
-                
-                # Log the analysis
-                self.logger.info(
-                    f"Sentence: {sentence}\n"
-                    f"Result: {result}\n"
-                    f"Context: {context}\n"
-                    f"---"
-                )
-                
-                return result
+                return json.loads(tool_call['function']['arguments'])
             
-            # If no tool calls, something went wrong
-            self.logger.error(f"No tool calls in response: {response}")
             return {
                 "needs_verification": False,
                 "query": None,
@@ -111,7 +72,6 @@ class QueryFormationAgent:
             }
             
         except Exception as e:
-            self.logger.error(f"Error processing response: {str(e)}\nResponse: {response}")
             return {
                 "needs_verification": False,
                 "query": None,

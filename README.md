@@ -84,9 +84,9 @@ netdoktor_langgraph/
 
 
 
-### Phase 2: Analysis Components
+### Phase 2: Analysis Components(Current Focus)
 
-#### 1. Query Formation Module (90% Complete)
+#### 1. Query Formation Module (90% Complete) 
 - ✓ Implemented markdown section parser
 - ✓ Added context-aware query formation
 - ✓ German language support
@@ -106,7 +106,7 @@ netdoktor_langgraph/
 
 
 
-### Phase 3: Validation Layer (Current Focus)
+### Phase 3: Validation Layer 
 7. **Validation Agent**
    - Implement secondary checking mechanism
    - Build reasoning verification
