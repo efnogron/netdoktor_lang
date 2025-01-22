@@ -9,7 +9,6 @@
 - ✓ Added chunking with RecursiveCharacterTextSplitter
 - ✓ Organized in modular structure under `src/shared/document_loader.py`
 - 🔄 Still Needed:
-  - Article text loader implementation
   - Metadata preservation during loading
   - Error handling for malformed PDFs
 
@@ -28,27 +27,25 @@
 - ✓ Implemented efficient retrieval mechanism
 - 🔄 Still Needed:
   - Metadata filtering options
-  - Performance optimization for large documents
 
-### Phase 2: Analysis Components (Current Focus)
+### Next Steps
+1. **Add metadata preservation**
+     - What: Keep track of section headers, page numbers, and document structure
+     - Why: Context is crucial for medical content (e.g., knowing if a statement is from "Contraindications" vs "Recommendations")
+     - Impact: Enables more accurate comparison between article claims and guideline sections
 
-#### 1. Query Formation Module (90% Complete)
-- ✓ Implemented markdown section parser
-- ✓ Added context-aware query formation
-- ✓ German language support
-- ✓ Added paragraph context to queries
-- ✓ Implemented logging system
-- 🔄 Still Needed:
-  - Fine-tune German prompts
-  - Add more test cases
+2. **Implement section header preservation**
+     - What: Keep track of which guideline section each chunk belongs to
+     - Why: Medical guidelines are hierarchically structured (e.g., "4.2 Treatment in Pregnancy")
+     - Impact: Enables context-aware searching and better result interpretation
 
-#### 2. Verification Engine (80% Complete)
-- ✓ Implemented semantic search with scoring
-- ✓ Added result synthesis
-- ✓ Added rich console output
-- 🔄 Still Needed:
-  - Improve evidence ranking
-  - Add confidence scoring
+3.  **Add intelligent chunk boundaries**
+     - What: Split text at meaningful points (e.g., section breaks) rather than arbitrary character counts
+     - Why: Medical concepts often need to stay together for proper understanding
+     - Impact: Better preservation of medical context and relationships
+
+
+
 
 ### Current Implementation Structure
 ```
@@ -86,90 +83,30 @@ netdoktor_langgraph/
 
 
 
-### Next Steps
-1. **Add metadata preservation**
-     - What: Keep track of section headers, page numbers, and document structure
-     - Why: Context is crucial for medical content (e.g., knowing if a statement is from "Contraindications" vs "Recommendations")
-     - Impact: Enables more accurate comparison between article claims and guideline sections
-
-2. **Implement section header preservation**
-     - What: Keep track of which guideline section each chunk belongs to
-     - Why: Medical guidelines are hierarchically structured (e.g., "4.2 Treatment in Pregnancy")
-     - Impact: Enables context-aware searching and better result interpretation
-
-3.  **Add intelligent chunk boundaries**
-     - What: Split text at meaningful points (e.g., section breaks) rather than arbitrary character counts
-     - Why: Medical concepts often need to stay together for proper understanding
-     - Impact: Better preservation of medical context and relationships
-
-
-
 
 ### Phase 2: Analysis Components
 
-1. **Query Formation Module**
-   - Input: 
-     * Current sentence
-     * Context object containing:
-       ```python
-       {
-           "heading": "Main section heading",
-           "subheading": "Subsection heading (if any)",
-           "paragraph": "Full paragraph text"
-       }
-       ```
-   
-   - Process:
-     * Determine if sentence contains verifiable medical claim
-     * If yes:
-       - Format as "verify: [statement]"
-       - Use context for reformulation if needed
-     * If no:
-       - Skip sentence with explanation
-   
-   - Output:
-     * Structured response:
-       ```python
-       {
-           "needs_verification": bool,
-           "query": "verify: [statement]" or None,
-           "reasoning": "Explanation of decision"
-       }
-       ```
-   
-   - Integration:
-     * Implemented as standalone LLM agent
-     * Uses simple prompt-based approach
-     * No need for retrieval infrastructure at this stage
-   
-   - Test:
-     * Verify correct identification of medical claims
-     * Check appropriate use of context in reformulation
-     * Validate query formatting consistency
+#### 1. Query Formation Module (90% Complete)
+- ✓ Implemented markdown section parser
+- ✓ Added context-aware query formation
+- ✓ German language support
+- ✓ Added paragraph context to queries
+- ✓ Implemented logging system
+- 🔄 Still Needed:
+  - Fine-tune German prompts
+  - Add more test cases
 
-2. **Verification Engine** (replaces previous Comparison Engine)
-   - Input: Verification queries and retrieval results
-   - Process:
-     * Execute semantic search using existing retrieval_graph
-     * Analyze guideline evidence against claim
-     * Generate structured verification response:
-       ```
-       {
-           "claim": "original statement",
-           "verification_status": "CONFIRMED|CONTRADICTED|PARTIALLY_VALID|UNCLEAR",
-           "evidence": "relevant guideline text",
-           "reasoning": "explanation of verification decision"
-       }
-       ```
-   - Integration:
-     * Uses existing retrieval_graph for semantic search
-     * Extends current configuration system for verification settings
-     * Leverages existing vector store and embedding setup
-   - Test: Verify accurate verification decisions and evidence matching
+#### 2. Verification Engine (80% Complete)
+- ✓ Implemented semantic search with scoring
+- ✓ Added result synthesis
+- ✓ Added rich console output
+- 🔄 Still Needed:
+  - Improve evidence ranking
+  - Add confidence scoring
 
 
 
-### Phase 3: Validation Layer
+### Phase 3: Validation Layer (Current Focus)
 7. **Validation Agent**
    - Implement secondary checking mechanism
    - Build reasoning verification
